@@ -7,16 +7,19 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Класс осуществляющий поиск и подсчёт ошибок в файле за какой-либо интервал
+ */
 public class ErrorCounter {
     private Path logsDir;
     private Path outFile;
 
     private String errorPattern;
-    private TimeToIntervalMapper resolver;
+    private TimeToIntervalMapper intervalMapper;
     private LogsDateTime logsDateTime;
 
 
-    public ErrorCounter(Path logsDir, Path outFile, TimeToIntervalMapper resolver, String errorPattern, LogsDateTime logsDateTime) {
+    public ErrorCounter(Path logsDir, Path outFile, TimeToIntervalMapper intervalMapper, String errorPattern, LogsDateTime logsDateTime) {
         if (!logsDir.toFile().isDirectory()) {
             throw new IllegalArgumentException("Directory should be given as input");
         }
@@ -25,7 +28,7 @@ public class ErrorCounter {
         }
 
         this.logsDir = logsDir;
-        this.resolver = resolver;
+        this.intervalMapper = intervalMapper;
         this.logsDateTime = logsDateTime;
         this.errorPattern = errorPattern;
         this.outFile = outFile;
@@ -36,7 +39,7 @@ public class ErrorCounter {
                 .flatMap(this::getLinesInFile)
                 .filter(str -> str.matches(errorPattern))
                 .map(logsDateTime::parseDateTime)
-                .collect(Collectors.groupingBy(resolver::mapTimeToInterval, TreeMap::new, Collectors.counting()));
+                .collect(Collectors.groupingBy(intervalMapper::mapTimeToInterval, TreeMap::new, Collectors.counting()));
 
         try {
             Files.deleteIfExists(outFile);
@@ -44,7 +47,7 @@ public class ErrorCounter {
             throw new ErrorCounterException("Error while deleting file: " + outFile.toString(), e);
         }
 
-        errorsInIntervalMap.forEach(this::writeToStatistic);
+        errorsInIntervalMap.forEach(this::writeToOutput);
     }
 
     private Stream<Path> getFilesFromFolder(Path dir) {
@@ -64,7 +67,7 @@ public class ErrorCounter {
         }
     }
 
-    private void writeToStatistic(String interval, Long count) {
+    private void writeToOutput(String interval, Long count) {
         String outLine = interval + " Error count: " + count + "\n";
         try {
             Files.write(outFile, outLine.getBytes(), StandardOpenOption.APPEND, StandardOpenOption.CREATE);

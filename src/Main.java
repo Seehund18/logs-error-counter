@@ -20,13 +20,13 @@ public class Main {
     private static DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
     // Маппер времени в интервал
-    private static TimeToIntervalMapper resolver = new HourIntervalMapper();
+    private static TimeToIntervalMapper intervalMapper = new HourIntervalMapper();
 
     public static void main(String[] args) {
 
         LogsDateTime dateTime = new LogsDateTime(datePattern, formatter);
 
-        ErrorCounter counter = new ErrorCounter(logsDir, statisticFile, resolver, errorPattern, dateTime);
+        ErrorCounter counter = new ErrorCounter(logsDir, statisticFile, intervalMapper, errorPattern, dateTime);
         counter.countErrors();
     }
 }
