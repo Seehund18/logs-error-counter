@@ -1,6 +1,11 @@
 # Compiled class file
 *.class
 
+# InteliJ IDEA files
+*.iml
+.idea/*
+out/*
+
 # BlueJ files
 *.ctxt
 
