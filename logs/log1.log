@@ -1,0 +1,17 @@
+2019-01-01T00:12:01.001 ERROR error message
+2019-01-01T00:17:01.004 ERROR error message
+2019-01-01T00:18:01.006 ERROR error message
+
+2019-01-02T00:13:02.000 WARN warn message
+2019-01-02T00:13:02.002 ERROR exception is thrown
+    Exception occurred: NullPointerException
+
+
+2019-01-03T00:14:03.003 ERROR error message
+2019-01-03T01:16:03.003 ERROR error message
+2019-01-03T23:23:03.003 ERROR error is thrown
+    ERROR occurred: SomeError
+
+2019-01-04T00:33:02.000 ERROR error message
+2019-01-04T00:32:02.000 WARN warn message
+

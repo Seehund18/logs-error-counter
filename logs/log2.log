@@ -1,0 +1,10 @@
+2019-01-05T00:32:02.000 WARN warn message
+2019-01-05T15:32:02.000 INFO info message
+
+2019-01-06T00:33:02.000 ERROR error message
+2019-01-06T00:35:02.000 ERROR error message
+2019-01-06T00:36:02.000 ERROR error message
+2019-01-06T00:40:02.000 ERROR error message
+2019-01-06T00:41:02.000 ERROR error message
+2019-01-06T00:43:02.000 ERROR error message
+2019-01-06T00:44:02.000 ERROR error message

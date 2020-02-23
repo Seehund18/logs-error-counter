@@ -1,0 +1,11 @@
+2019-02-25T17:32:55.530 TRACE trace message
+2019-02-25T19:33:31.678 INFO info message
+2019-02-25T19:34:55.530 WARN warn message
+2019-02-25T20:12:34.530 DEBUG debug message
+
+2020-02-13T23:12:34.530 ERROR error message
+2020-02-13T23:12:35.530 ERROR error message
+2020-02-13T23:12:36.530 ERROR error message
+2020-02-13T23:12:40.530 ERROR error message
+
+2020-05-13T23:12:34.530 ERROR error message
